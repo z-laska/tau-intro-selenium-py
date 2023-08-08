@@ -3,13 +3,13 @@ Tests covering DuckDuckGo searches.
 """
 
 
-from pages.result import DuckDuckGoSearchPage
+from pages.result import DuckDuckGoResultPage
 from pages.search import DuckDuckGoSearchPage
 
 
 def test_basic_duckduckgo_search(browser):
     search_page = DuckDuckGoSearchPage(browser)
-    result_page = DuckDuckGoSearchPage(browser)
+    result_page = DuckDuckGoResultPage(browser)
     PHRASE = "zebra"
 
     # Given the DuckDuckGo home page is displayed
@@ -19,7 +19,7 @@ def test_basic_duckduckgo_search(browser):
     search_page.search(PHRASE)
 
     # Then the search result title contains "zebra"
-    assert PHRASE == result_page.title()
+    assert PHRASE in result_page.title()
 
     # And the search result query is "zebra"
     assert PHRASE == result_page.search_input_value()
@@ -28,6 +28,3 @@ def test_basic_duckduckgo_search(browser):
     titles = result_page.result_link_titles()
     matches = [t for t in titles if PHRASE.lower() in t.lower()]
     assert len(matches) > 0
-
-    # TODO: Remove this exception once the test is complete
-    raise Exception("Incomplete Test")

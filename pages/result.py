@@ -5,12 +5,12 @@ Page object for DuckDuckGo result page.
 from selenium.webdriver.common.by import By
 
 
-class DuckDuckGoSearchPage:
+class DuckDuckGoResultPage:
 
     RESULT_LINKS = (By.CSS_SELECTOR, '[data-testid="result-title-a"]')
     SEARCH_INPUT = (By.ID, 'search_form_input')
 
-    def __int__(self, browser):
+    def __init__(self, browser):
         self.browser = browser
 
     def result_link_titles(self):
